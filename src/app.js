@@ -40,13 +40,27 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
+    if(!req.query.address){
+        return res.send({
+            error: 'Se debe ingresar una ubicación'
+        })
+    }
     res.send({
-        forecast: {
-            latitud: '40',
-            longitud: '123'
-        },
-        address: 'Santiago'
+        latitud: '40',
+        longitud: '123',
+        address: req.query.address
     });
+})
+
+app.get('/products', (req, res) => {
+    if(!req.query.search){
+        return res.send({
+            error: 'Se debe ingresar un término de búsqueda'
+        })
+    }
+    res.send({
+        products: []
+    })
 })
 
 //app.com
